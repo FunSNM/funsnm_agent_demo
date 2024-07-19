@@ -5,15 +5,12 @@ from datetime import datetime, timedelta
 
 import numpy as np
 import pandas as pd
-from agentMET4FOF.agents import AgentMET4FOF, MonitorAgent
-from agentMET4FOF.network import AgentNetwork
+from agentMET4FOF.agents import AgentMET4FOF, AgentNetwork, MonitorAgent
 from river import anomaly
-import csv
 
 
 class SensorAgent(AgentMET4FOF):
     def init_parameters(self, df_historical=None, sensor_keys=["O3", "PM10", "PM25"]):
-        super().init_parameters()
         self.df_historical = df_historical
         self.max_len = len(self.df_historical)
         self.current_index = 0
@@ -83,7 +80,6 @@ class OCSVMAgent(AgentMET4FOF):
 class AggregatorAgent(AgentMET4FOF):
     ## Compute average of the values received
     def init_parameters(self, aggregate_keys=["O3", "PM10", "PM25"], max_seconds=2):
-        super().init_parameters()
         self.aggregate_keys = aggregate_keys
         self.max_seconds = max_seconds
 
@@ -130,11 +126,11 @@ class AggregatorAgent(AgentMET4FOF):
 
 
 def main():
-    # demo_name = "aws-iot"
+    demo_name = "aws-iot"
     # demo_name = "appliance"
     # demo_name = "solar_power"
     # demo_name = "water_level"
-    demo_name = "helsinki"
+    # demo_name = "helsinki"
 
     dataset_folders = {
         "water_level": "catalonia-water-resource-daily-monitoring",
@@ -170,7 +166,7 @@ def main():
     elif demo_name == "aws-iot":
         sensor_keys = ["co", "humidity", "lpg"]
         timestamp_col = "datetime_round"
-        df_raw = pd.read_csv(os.path.join(data_folder, "iot_telemetry_data.csv"), quoting=csv.QUOTE_NONE)
+        df_raw = pd.read_csv(os.path.join(data_folder, "iot_telemetry_data.csv"))
 
         # convert unix time to time of day
         start = datetime(1970, 1, 1)  # Unix epoch start time

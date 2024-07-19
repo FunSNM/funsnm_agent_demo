@@ -1,13 +1,15 @@
 ## Implement Aggregator Agent & online machine learning
 
+from agentMET4FOF.agents import AgentMET4FOF, AgentNetwork, MonitorAgent
+from agentMET4FOF.streams import SineGenerator, CosineGenerator
+
+import pandas as pd
+from matplotlib import pyplot as plt
+import numpy as np
+import time
 import os
 from datetime import datetime, timedelta
 
-import numpy as np
-import pandas as pd
-from agentMET4FOF.agents import AgentMET4FOF, MonitorAgent
-from agentMET4FOF.network import AgentNetwork
-import csv
 
 class SensorAgent(AgentMET4FOF):
     def init_parameters(self, df_historical=None, sensor_keys=["O3", "PM10", "PM25"]):
@@ -53,7 +55,6 @@ class AggregatorAgent(AgentMET4FOF):
     def init_parameters(self, aggregate_keys=["O3", "PM10", "PM25"], max_seconds=2):
         self.aggregate_keys = aggregate_keys
         self.max_seconds = max_seconds
-        super().init_parameters()
 
     def on_received_message(self, message):
         ## get number of agents that are connected to it
@@ -99,8 +100,8 @@ class AggregatorAgent(AgentMET4FOF):
 
 
 def main():
-    # demo_name = "aws-iot"
-    demo_name = "appliance"
+    demo_name = "aws-iot"
+    # demo_name = "appliance"
     # demo_name = "solar_power"
     # demo_name = "water_level"
     # demo_name = "helsinki"
@@ -139,21 +140,7 @@ def main():
     elif demo_name == "aws-iot":
         sensor_keys = ["co", "humidity", "lpg"]
         timestamp_col = "datetime_round"
-
-        with open(
-                os.path.join(data_folder, "iot_telemetry_data.csv"),
-                "r+", encoding="utf-8") as csv_file:
-            content = csv_file.read()
-
-        with open(
-                os.path.join(data_folder, "iot_telemetry_data_noquotes.csv"),
-                "w+", encoding="utf-8") as csv_file:
-            csv_file.write(content.replace('"', ''))
-
-        df_raw = pd.read_csv(os.path.join(data_folder, "iot_telemetry_data_noquotes.csv"))
-
-        # #remove leading and trailing quotes from column names
-        # df_raw.rename(columns=lambda x: x.strip('"'), inplace=True)
+        df_raw = pd.read_csv(os.path.join(data_folder, "iot_telemetry_data.csv"))
 
         # convert unix time to time of day
         start = datetime(1970, 1, 1)  # Unix epoch start time
@@ -168,8 +155,6 @@ def main():
                 "min"
             )
             df_sensor_board.drop(["device", "datetime", "ts"], inplace=True, axis=1)
-
-            df_sensor_board['light'] = df_sensor_board['light'].map(lambda x:eval(x.capitalize()))
             df_sensor_board = (
                 df_sensor_board.groupby("datetime_round").mean().reset_index(drop=False)
             )

@@ -162,5 +162,3 @@ for ax, (sensor_board_name, zscore_dict) in zip(axes, zscore_dicts.items()):
 axes[0].legend()
 axes[-1].set_xlabel("Timestamps")
 fig.tight_layout()
-
-plt.show()

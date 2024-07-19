@@ -1,11 +1,9 @@
 ## Implement Aggregator Agent & online machine learning
 import os
 from datetime import datetime, timedelta
-
 import numpy as np
 import pandas as pd
-from agentMET4FOF.agents import AgentMET4FOF, MonitorAgent
-from agentMET4FOF.network import AgentNetwork
+from agentMET4FOF.agents import AgentMET4FOF, AgentNetwork, MonitorAgent
 from river import anomaly
 
 

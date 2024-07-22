@@ -26,4 +26,4 @@ Upon launching any scripts which uses the agent framework (scripts 03-06), a das
 - In the case of error when the script is ran multiple times using the `osbrain` backend, it could be due to the agent processes not terminating cleanly. 
 To terminate the Python agents in the background, we could run `sudo pkill python`. 
 
-- A general good practice guide is included in `gpg.pdf`. 
+- A general good practice guide is included in [gpg.pdf](https://github.com/FunSNM/funsnm_agent_demo/blob/a8a6df877a5fe4606e74aabf18530d7e96f56484/gpg.pdf). 

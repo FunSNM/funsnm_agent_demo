@@ -1,14 +1,12 @@
 ## Implement Aggregator Agent & online machine learning
 
-from agentMET4FOF.agents import AgentMET4FOF, AgentNetwork, MonitorAgent
-from agentMET4FOF.streams import SineGenerator, CosineGenerator
-
-import pandas as pd
-from matplotlib import pyplot as plt
-import numpy as np
-import time
 import os
 from datetime import datetime, timedelta
+
+import numpy as np
+import pandas as pd
+from agentMET4FOF.agents import AgentMET4FOF, MonitorAgent
+from agentMET4FOF.network import AgentNetwork
 
 
 class SensorAgent(AgentMET4FOF):

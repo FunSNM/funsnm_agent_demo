@@ -1,12 +1,10 @@
-from agentMET4FOF.agents import AgentMET4FOF, AgentNetwork, MonitorAgent
-from agentMET4FOF.streams import SineGenerator, CosineGenerator
-
-import pandas as pd
-from matplotlib import pyplot as plt
-import numpy as np
-import time
 import os
 from datetime import datetime, timedelta
+
+import numpy as np
+import pandas as pd
+from agentMET4FOF.agents import AgentMET4FOF, MonitorAgent
+from agentMET4FOF.network import AgentNetwork
 
 
 def rolling_zscore(price_series, window=10):
@@ -179,7 +177,7 @@ def main():
 
     ###=======================
     # start agent network server
-    agentNetwork = AgentNetwork(backend="mesa")
+    agentNetwork = AgentNetwork(ip_addr='127.0.0.1', backend='MESA')
 
     for sensor_i, (sensor_name, df_sensor) in enumerate(df_sensors_dict.items()):
         sensor_agent = agentNetwork.add_agent(

@@ -22,7 +22,7 @@ For each script, the dataset can be selected by specifying the `demo_name` which
 - `07_agents_correlated_aggregator.py` Aggregates sensor data by calculating the uncertainty weight mean, that takes potential correlations between sensors into account.
 - `08_agents_correlated_predictor.py` Provides a prediction of a sensor value at a specific time (in the future) and place (where no sensor is placed), taking into account potential correlations between sensors.
 
-Upon launching any scripts which uses the agent framework (scripts 03-06), a dashboard would be displayed on the default browser. 
+Upon launching any scripts which uses the agent framework (scripts 03-08), a dashboard would be displayed on the default browser. 
 
 ## Notes
 - In the case of error when the script is ran multiple times using the `osbrain` backend, it could be due to the agent processes not terminating cleanly. 

@@ -19,8 +19,10 @@ For each script, the dataset can be selected by specifying the `demo_name` which
 - `04_agents_aggregator.py` Code 03 is extended by including an AggregatorAgent which gathers and aligns data from agents in a star topology (it is possible to configure into other topologies). Aggregation function can be performed on the aggregated data; as an example, a simple averaging is used here. 
 - `05_agents_onlineml.py` We demonstrate the use of advanced anomaly detection using One-Class Support Vector Machine in place of the simple z-score.
 - `06_agents_hierarchical.py` The use of a hierarchical topology is demonstrated with the agent framework.
+- `07_agents_correlated_aggregator.py` Aggregates sensor data by calculating the uncertainty weight mean, that takes potential correlations between sensors into account.
+- `08_agents_correlated_predictor.py` Provides a prediction of a sensor value at a specific time (in the future) and place (where no sensor is placed), taking into account potential correlations between sensors.
 
-Upon launching any scripts which uses the agent framework (scripts 03-06), a dashboard would be displayed on the default browser. 
+Upon launching any scripts which uses the agent framework (scripts 03-08), a dashboard would be displayed on the default browser. 
 
 ## Notes
 - In the case of error when the script is ran multiple times using the `osbrain` backend, it could be due to the agent processes not terminating cleanly. 

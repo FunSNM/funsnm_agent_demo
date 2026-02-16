@@ -7,14 +7,9 @@ from agentMET4FOF.agents import AgentMET4FOF, MonitorAgent
 from agentMET4FOF.network import AgentNetwork
 
 
-def rolling_zscore(price_series, window=10):
-    rolling = pd.Series(price_series).rolling(window=window)
-    return ((price_series - rolling.mean()) / rolling.std()).values
-
-
 class SensorAgent(AgentMET4FOF):
 
-    def init_parameters(self, df_historical=None, sensor_keys=["O3", "PM10", "PM25"]):
+    def init_parameters(self, df_historical=None, sensor_keys=None):
         self.df_historical = df_historical
         self.max_len = len(self.df_historical)
         self.current_index = 0
@@ -23,6 +18,8 @@ class SensorAgent(AgentMET4FOF):
             self.sensor_keys = df_historical.columns
         else:
             self.sensor_keys = sensor_keys
+
+        super().init_parameters()
 
     def agent_loop(self):
         if self.current_state == "Running":
@@ -53,8 +50,8 @@ class ZScoreAgent(AgentMET4FOF):
 
 
 def main():
-    demo_name = "aws-iot"
-    # demo_name = "appliance"
+    # demo_name = "aws-iot"
+    demo_name = "appliance"
     # demo_name = "solar_power"
     # demo_name = "water_level"
     # demo_name = "helsinki"

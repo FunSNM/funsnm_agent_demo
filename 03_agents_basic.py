@@ -24,6 +24,8 @@ class SensorAgent(AgentMET4FOF):
         else:
             self.sensor_keys = sensor_keys
 
+        super().init_parameters()
+
     def agent_loop(self):
         if self.current_state == "Running":
             current_row = self.df_historical.iloc[self.current_index]
@@ -53,8 +55,8 @@ class ZScoreAgent(AgentMET4FOF):
 
 
 def main():
-    demo_name = "aws-iot"
-    # demo_name = "appliance"
+    # demo_name = "aws-iot"
+    demo_name = "appliance"
     # demo_name = "solar_power"
     # demo_name = "water_level"
     # demo_name = "helsinki"

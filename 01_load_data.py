@@ -4,8 +4,8 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 
-demo_name = "helsinki"
-# demo_name = "appliance"
+# demo_name = "helsinki"
+demo_name = "appliance"
 # demo_name = "solar_power"
 # demo_name = "water_level"
 # demo_name = "helsinki"

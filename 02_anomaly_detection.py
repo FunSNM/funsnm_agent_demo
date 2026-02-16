@@ -10,8 +10,8 @@ def rolling_zscore(price_series, window=10):
     return ((price_series - rolling.mean()) / rolling.std()).values
 
 
-demo_name = "aws-iot"
-# demo_name = "appliance"
+# demo_name = "aws-iot"
+demo_name = "appliance"
 # demo_name = "solar_power"
 # demo_name = "water_level"
 # demo_name = "helsinki"

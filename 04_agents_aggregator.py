@@ -100,10 +100,10 @@ class AggregatorAgent(AgentMET4FOF):
 
 def main():
     # demo_name = "aws-iot"
-    # demo_name = "appliance"
+    demo_name = "appliance"
     # demo_name = "solar_power"
     # demo_name = "water_level"
-    demo_name = "helsinki"
+    # demo_name = "helsinki"
 
     dataset_folders = {
         "water_level": "catalonia-water-resource-daily-monitoring",
